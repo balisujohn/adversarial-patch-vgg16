@@ -10,7 +10,8 @@ paper Brown et. al 2018 (https://arxiv.org/abs/1712.09665) The attack is perform
 #### CPU only
 
 Python Version: 3.6
-Platforms tested with: Ubuntu 18.04 
+
+Platforms tested: Ubuntu 18.04(64 bit)
 
 Create a python3.6 virtual environment, then install the python package dependencies in requirements.txt via pip. You can refer to this tutorial if this part is unclear https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/
 
@@ -18,7 +19,8 @@ Create a python3.6 virtual environment, then install the python package dependen
 
 
 Python Version: 3.9
-Platforms tested with: Windows 10
+
+Platforms tested: Windows 10(64 bit)
 
 
 First, make sure cuda and Conda are installed, then run the following conda commands to create your conda virtual env
