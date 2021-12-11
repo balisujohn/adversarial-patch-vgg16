@@ -60,6 +60,7 @@ Contribute whatever you want. Maybe you could improve the efficiency of adversar
 
 \*all included files are are covered by the below license unless another license is specified in their header.
 
+MIT License
 
 Copyright 2021 John Balis
 
