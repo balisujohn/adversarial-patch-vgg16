@@ -24,7 +24,9 @@ from train_adversarial_patch import n_most_likely, freeze_model
 
 
 SAMPLES = 100
-CORRECT_CLASS = 859
+#CORRECT_CLASS = 859 # toaster
+#CORRECT_CLASS = 145 # king penguin
+CORRECT_CLASS = 74 # garden spider
 RENDER = True
 
 image = None
@@ -58,6 +60,7 @@ with open("adversarial_patch.json", 'r') as json_file:
 
     for i in range(SAMPLES):
         print(f"Sample {str(i)}")
+        images, _ = next(iter(dataloader))
         x = torch.clone(images[0].view(1,3,224,224))
        
 
@@ -96,10 +99,11 @@ with open("adversarial_patch.json", 'r') as json_file:
         x = torch.where(sample_patch_map > 0, padded_patch , x) 
 
        
-       
+    
 
-
-        x = torch.where(sample_patch_map > 0, padded_patch , x)
+        if RENDER:
+            helper.imshow(x.swapaxes(1,3).view(3,224,224).detach(), normalize = False)
+            plt.show()
 
         x = torchvision.transforms.functional.adjust_brightness(x.view(224,224,3).swapaxes(0,2),random.uniform(0.8,1.2))
         x = torchvision.transforms.functional.adjust_contrast(x,random.uniform(0.5,2))
@@ -117,4 +121,4 @@ with open("adversarial_patch.json", 'r') as json_file:
         if RENDER:
             helper.imshow(x.view(3,224,224).detach(), normalize = False)
             plt.show()
-    print("Percent Correct: " + str(correct_count/SAMPLES))
+    print("Percent Correct: " + str(100.0 * (correct_count/SAMPLES)))

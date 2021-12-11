@@ -24,14 +24,20 @@ from helper import imshow
 
 import helper
 import label_tags
-EPOCHS = 1
+EPOCHS = 10
 BATCH_SIZE = 1
+#TARGET_CLASS = 859 # toaster 
+TARGET_CLASS = 74 # garden spider
+#TARGET_CLASS = 145 # king penguin
+
 
 device =None
 if torch.cuda.is_available():
     device = 'cuda'
+    print("using cuda")
 else:
     device = 'cpu'
+    print("using cpu")
 
 
 
@@ -124,12 +130,7 @@ if __name__ == "__main__":
         target_label = torch.ones((BATCH_SIZE, 1000))
         target_label = torch.mul(target_label, -1000)
         
-        # Follow this format to specify which label you want to train the patch to target.
-        # You can see which label corresponds to which index of target_label in label_tags.py
-        
-        #target_label[:,859] = 1000 # toaster
-        #target_label[:, 145] = 1000 # king penguin
-        target_label[:,724] = 1000 # pirate, pirate ship
+        target_label[:,TARGET_CLASS] = 1000
         
         
         count = 0
@@ -142,7 +143,7 @@ if __name__ == "__main__":
             loss = torch.max(functional.mse_loss(output, y))
             loss.backward()
             optimizer.step()
-        t.set_postfix(loss = str(loss))
+            t.set_postfix(loss = str(loss))
     net.eval()        
     
 
