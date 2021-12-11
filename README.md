@@ -5,7 +5,7 @@ This project is a free and open source PyTorch implementation of the adversarial
 paper Brown et. al 2018 (https://arxiv.org/abs/1712.09665) The attack is performed against the default PyTorch pretrained instance of VGG-16, as proposed in the paper Simonyan et. al 2014 (https://arxiv.org/abs/1409.1556)
 
 
-### python environment setup
+### Python Environment Setup
 
 #### CPU only
 
